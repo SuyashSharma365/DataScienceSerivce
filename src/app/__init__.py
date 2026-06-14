@@ -15,9 +15,9 @@ producer = KafkaProducer(bootstrap_servers=app.config['KAFKA_BOOTSTRAP_SERVERS']
 def handleMessage():
     message = request.json.get("message")
     result = messageService.processMessage(message)
-    serialized_result = result.model_dump()
+    serialized_result = result.serializer()
     producer.send(app.config['KAFKA_TOPIC'], value=serialized_result)
-    return jsonify(result.model_dump())
+    return jsonify(result.model_dump()) , 200
 
 @app.route("/" , methods=["GET"])
 def home():

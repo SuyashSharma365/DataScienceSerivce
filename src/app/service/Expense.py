@@ -6,3 +6,10 @@ class Expense(BaseModel):
     merchant: Optional[str] = Field(title="merchant", description="Merchant name who the transaction has been made")
     currency : Optional[str] = Field(title="currency" , description="currency of the transaction")
 
+    def serializer(self)-> dict:
+        return {
+            "amount": self.amount,
+            "merchant":self.merchant,
+            "currency":self.currency
+        }
+
