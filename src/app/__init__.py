@@ -21,7 +21,7 @@ def handleMessage():
 
 @app.route("/" , methods=["GET"])
 def home():
-    return jsonify({"message": "Hello World"})
+    return jsonify({"message": "Hello World"}), 200
 
 if __name__ == "__main__":
     app.run(host="localhost", port=8000, debug=True)
